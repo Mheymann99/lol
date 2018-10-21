@@ -16,8 +16,8 @@
     <!-- Styles -->
     <link href="{{ mix('css/main.css') }}" rel="stylesheet">
 </head>
-<body class="bg-grey-lighter">
-<div id="app">
+<body class="bg-grey-lighter p-0 m-0" >
+<div id="app" style="overflow-y: hidden; max-height: 99vh; height: 100vh">
     <application></application>
 </div>
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 100%">
         <nav class="bg-white h-12 shadow mb-8 px-6 md:px-0 fixed pin-t w-full z-50">
             <div class="container mx-auto h-full">
                 <div class="flex items-center justify-center h-12">
@@ -89,30 +89,35 @@
                 </div>
             </div>
         </nav>
-        <div class="h-12 mb-8 px-6 md:px-0"></div>
-        <div class="p-4 w-3/4 m-auto flex flex-col" v-if="source.length > 0">
-            <div class="flex flex-row justify-around">
-                <div class="toggle p-2 m-auto w-1/2">
-                    <input type="radio" name="type" value="summoner" id="sizeWeight2" checked="checked" v-model="type"/>
-                    <label for="sizeWeight2" class="text-grey-dark">Personal</label>
-                    <input type="radio" name="type" value="opponent" id="sizeDimensions2" v-model="type"/>
-                    <label for="sizeDimensions2" class="text-grey-dark">Opponent</label>
+
+        <div class="backgroundo" :style="backgroundo">
+            <div class="pt-20 px-6 md:px-0 w-full" style="height: 100%; overflow-y: auto">
+                <div class="p-4 w-full lg:w-4/5 m-auto flex flex-col " v-if="source.length > 0">
+                    <div class="flex flex-row justify-around">
+                        <div class="toggle p-2 m-auto w-1/2">
+                            <input type="radio" name="type" value="summoner" id="sizeWeight2" checked="checked"
+                                   v-model="type"/>
+                            <label for="sizeWeight2" class="text-grey-dark">Personal</label>
+                            <input type="radio" name="type" value="opponent" id="sizeDimensions2" v-model="type"/>
+                            <label for="sizeDimensions2" class="text-grey-dark">Opponent</label>
+                        </div>
+                        <div class="toggle p-2">
+                            <input type="radio" name="sizeBy" value="normal" id="sizeWeight" checked="checked"
+                                   v-model="ranked"/>
+                            <label for="sizeWeight" class="text-grey-dark">Normal</label>
+                            <input type="radio" name="sizeBy" value="ranked" id="sizeDimensions" v-model="ranked"/>
+                            <label for="sizeDimensions" class="text-grey-dark">Ranked</label>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded border border-grey p-3">
+                        <data-table :source="source" :columns="fields"></data-table>
+                    </div>
                 </div>
-                <div class="toggle p-2">
-                    <input type="radio" name="sizeBy" value="normal" id="sizeWeight" checked="checked"
-                           v-model="ranked"/>
-                    <label for="sizeWeight" class="text-grey-dark">Normal</label>
-                    <input type="radio" name="sizeBy" value="ranked" id="sizeDimensions" v-model="ranked"/>
-                    <label for="sizeDimensions" class="text-grey-dark">Ranked</label>
+                <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
+                    <div class="p-3 text-3xl text-blue m-auto">
+                        Select A Summoner!
+                    </div>
                 </div>
-            </div>
-            <div class="bg-white rounded border border-grey p-3">
-                <data-table :source="source" :columns="fields"></data-table>
-            </div>
-        </div>
-        <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
-            <div class="p-3 text-3xl text-blue m-auto">
-                Select A Summoner!
             </div>
         </div>
 
@@ -128,23 +133,30 @@
                 ranked: 'normal',
                 source: [],
                 fields: [],
-                type: 'summoner'
+                type: 'summoner',
+                splash: ''
 
             }
         },
         methods: {
             getData: function () {
-                axios.get('/'+this.ranked+'/'+this.type+'/'+ this.summoner).then((data) => {
+                axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner).then((data) => {
                     console.log(data.data);
                     this.source = data.data.data;
                     this.fields = Object.keys(this.source[0]);
                 });
 
+            },
+            getSplash: function () {
+                axios.get('/splash/' + this.summoner).then((data) => {
+                    this.splash = data.data;
+                });
             }
         },
         watch: {
             summoner: function () {
                 this.getData();
+                this.getSplash();
             },
             ranked: function () {
                 this.getData();
@@ -153,7 +165,15 @@
                 this.getData();
             }
         },
-        computed: {}
+        computed: {
+            backgroundo() {
+                if (this.splash == '') {
+                    return {backgroundImage: 'none'}
+                } else {
+                    return {backgroundImage: "url('" + this.splash + "')"}
+                }
+            }
+        }
     }
 </script>
 
@@ -172,6 +192,13 @@
         font-family: "Open Sans", "Helvetica", sans-serif;
         -webkit-font-smoothing: antialiased;
         background-color: #EEE;
+    }
+
+    .backgroundo {
+        background-image: none;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
     }
 
     fieldset {
