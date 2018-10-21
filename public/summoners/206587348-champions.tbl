@@ -1,0 +1,72 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th># games</th>
+      <th>winrate</th>
+      <th>kda</th>
+    </tr>
+    <tr>
+      <th>championName</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Brand</th>
+      <td>34</td>
+      <td>0.44</td>
+      <td>1.22</td>
+    </tr>
+    <tr>
+      <th>Annie</th>
+      <td>16</td>
+      <td>0.31</td>
+      <td>0.71</td>
+    </tr>
+    <tr>
+      <th>Aurelion Sol</th>
+      <td>16</td>
+      <td>0.38</td>
+      <td>1.06</td>
+    </tr>
+    <tr>
+      <th>Akali</th>
+      <td>7</td>
+      <td>0.29</td>
+      <td>0.81</td>
+    </tr>
+    <tr>
+      <th>Ashe</th>
+      <td>6</td>
+      <td>0.83</td>
+      <td>2.22</td>
+    </tr>
+    <tr>
+      <th>Singed</th>
+      <td>4</td>
+      <td>0.75</td>
+      <td>0.92</td>
+    </tr>
+    <tr>
+      <th>Master Yi</th>
+      <td>1</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Nasus</th>
+      <td>1</td>
+      <td>0.00</td>
+      <td>0.14</td>
+    </tr>
+    <tr>
+      <th>Vel'Koz</th>
+      <td>1</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
