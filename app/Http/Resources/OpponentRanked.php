@@ -16,8 +16,7 @@ class OpponentRanked extends JsonResource
     public function toArray($request)
     {
         return [
-            'champion_name' =>$this->championName,
-            'portrait' => Champion::find($this->champion_id)->portrait_url,
+            'champion' =>["text" =>$this->championName, "src" => Champion::find($this->champion_id)->portrait_url],
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg gold at 10m (opponent\')' => self::readable($this->gold_at_10_opponent),

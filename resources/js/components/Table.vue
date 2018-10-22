@@ -67,9 +67,10 @@
                 <template v-for="s in sourceFiltered">
                     <tr @click="selected(s)" :class="selectedRow == s ? highlight : 'hover:bg-blue-lightest'"
                         @dblclick="doubleClick(s)">
-                        <td v-for="c in columns" class="py-4 px-6 border-b border-grey-light">
+                        <td v-for="c in columns" class="py-4 px-6 border-b border-grey-light relative">
                             <template v-if="columnImage(s, c)">
-                                <img :src="columnValue(s, c)" class="w-12" />
+                                <img v-if="columnValue(s, c).hasOwnProperty('src')" :src="columnValue(s, c).src" class="w-16" />
+                                <span v-if="columnValue(s, c).hasOwnProperty('text')" class="overlay text-xs shadow-inner">{{columnValue(s, c).text}}</span>
                             </template>
                             <template v-else>{{columnValue(s, c)}}</template>
 
@@ -85,6 +86,14 @@
     </div>
 </template>
 <style scoped>
+    .overlay{
+        position: absolute;
+        top: 19%;
+        left: 13%;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 2px #212121;
+    }
     i.arrow {
         border: solid white;
         border-width: 0 3px 3px 0;
@@ -227,27 +236,32 @@
                 return nodashes.charAt(0).toUpperCase() + nodashes.slice(1);
             },
             columnValue(source, col) {
+                let value;
                 if (col !== null && typeof col === 'object') {
                     if (col.hasOwnProperty("targetFunction")) {
-                        return col.targetFunction(source);
+                        value= col.targetFunction(source);
                     } else {
-                        return _.get(source, col.target);
+                        value = _.get(source, col.target);
                     }
                 } else {
-                    return source[col];
+                    value = source[col];
                 }
+               return value;
             },
             columnImage(source, col){
+                let value;
                 if (col !== null && typeof col === 'object') {
                     if (col.hasOwnProperty("targetFunction")) {
-                        return col.targetFunction(source);
+                        value= col.targetFunction(source);
                     } else {
-
-                        return _.get(source, col.target);
+                        value = _.get(source, col.target);
                     }
                 } else {
-                    let dato = source[col];
-                    return (String(dato).includes('http'));
+                    value = source[col];
+
+                }
+                if (value !== null && typeof value === 'object'){
+                    return true;
                 }
             },
             setOrder (col){
