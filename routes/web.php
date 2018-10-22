@@ -34,5 +34,5 @@ Route::get('/ranked/opponent/{id}', function($id){
 
 Route::get('/splash/{account_id}', function($account_id){
    $champ =  \App\Summoner::where('account_id', $account_id)->orderBy('num_games', 'desc')->first();
-   return \App\Champion::where('champion_name', $champ->championName)->first()->splash_url;
+   return \App\Champion::find($champ->champion_id)->splash_url;
 });

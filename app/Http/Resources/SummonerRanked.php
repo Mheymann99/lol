@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Champion;
 
 class SummonerRanked extends JsonResource
 {
@@ -15,7 +16,8 @@ class SummonerRanked extends JsonResource
     public function toArray($request)
     {
         return [
-            'champion_name' =>'http://ddragon.leagueoflegends.com/cdn/8.20.1/img/champion/'.str_replace("'", '', str_replace(' ', '',$this->championName)).'.png',
+            'champion_name' =>$this->championName,
+            'portrait' => Champion::find($this->champion_id)->portrait_url,
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg game duration' => gmdate("H:i:s", $this->game_duration),

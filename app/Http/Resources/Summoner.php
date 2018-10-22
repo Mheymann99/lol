@@ -17,7 +17,7 @@ class Summoner extends JsonResource
     {
         return [
             'champion_name' =>$this->championName,
-            'portrait' => Champion::where('champion_name', $this->championName)->first()->portrait_url,
+            'portrait' => Champion::find($this->champion_id)->portrait_url,
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg game duration' => gmdate("H:i:s", $this->game_duration),
