@@ -45,22 +45,25 @@
                     </ul>
                 </div>
             </div>
-            <table class="text-left w-full min-w-full" style="border-collapse: collapse">
+            <table class="text-left w-full min-w-full border-l border-grey-light" style="border-collapse: collapse">
                 <thead>
                 <tr>
                     <template v-for="c in columns">
-                        <th class="py-4 px-6 text-white bg-blue-dark font-sans font-medium uppercase text-sm border-b border-grey-light">
-                            <a href="#" @click.prevent="setOrder(c)" class="text-white no-underline flex flex-row">{{beautify(c)}}
-                                <div class="flex flex-col w-1 ml-1" v-if="order.field == c || order.field == c.target">
-                                    <i class="arrow ml-1 text-white"
-                                       :class="order.direction === 'asc' ? 'down': 'up'"></i></div>
+                        <th class="py-4 px-6 text-white bg-blue-dark font-sans font-medium uppercase text-sm border-b border-r border-blue-light">
+                            <div class="flex justify-center items-center">
+                                <a href="#" @click.prevent="setOrder(c)" class="text-white no-underline flex flex-row">{{beautify(c)}}
+                                    <div class="flex flex-col w-1 ml-1"
+                                         v-if="order.field == c || order.field == c.target">
+                                        <i class="arrow ml-1 text-white"
+                                           :class="order.direction === 'asc' ? 'down': 'up'"></i></div>
 
-                                <div class="flex flex-col w-1 ml-1" v-else>
-                                    <i class="arrow-2  ml-1  up"></i>
-                                    <i class="arrow-2  ml-1  down"></i>
-                                </div>
-                                <span v-if="c.tooltip" class="ml-4" v-tooltip="{content: c.tooltip}">&#9432;</span>
-                            </a>
+                                    <div class="flex flex-col w-1 ml-1" v-else>
+                                        <i class="arrow-2  ml-1  up"></i>
+                                        <i class="arrow-2  ml-1  down"></i>
+                                    </div>
+                                    <span v-if="c.tooltip" class="ml-4" v-tooltip="{content: c.tooltip}">&#9432;</span>
+                                </a>
+                            </div>
                         </th>
                     </template>
                 </tr>
@@ -69,7 +72,7 @@
                 <template v-for="s in sourceFiltered">
                     <tr @click="selected(s)" :class="selectedRow == s ? highlight : 'hover:bg-blue-lightest'"
                         @dblclick="doubleClick(s)">
-                        <td v-for="c in columns" class="py-4 px-6 border-b border-grey-light relative">
+                        <td v-for="c in columns" class="py-4 px-6 border-b border-r border-grey-light relative">
                             <template v-if="columnImage(s, c)">
                                 <div class="flex flex-col justify-center items-center">
                                     <img v-if="columnValue(s, c).hasOwnProperty('src')" :src="columnValue(s, c).src"
@@ -78,7 +81,9 @@
                                           class="overlay text-xs shadow-inner text-white p-2 rounded">{{columnValue(s, c).text}}</span>
                                 </div>
                             </template>
-                            <template v-else>{{columnValue(s, c)}}</template>
+                            <template v-else>
+                                <div class="flex justify-center items-center">{{columnValue(s, c)}}</div>
+                            </template>
 
                         </td>
                     </tr>

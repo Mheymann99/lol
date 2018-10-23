@@ -92,7 +92,7 @@
 
         <div class="backgroundo" :style="backgroundo">
             <div class="pt-20 px-6 md:px-0 w-full" style="height: 100%; overflow-y: auto">
-                <div class="p-4 w-full lg:w-4/5 m-auto flex flex-col " v-if="source.length > 0">
+                <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
                     <div class="flex flex-row justify-around">
                         <div class="toggle p-2 m-auto w-1/2">
                             <input type="radio" name="type" value="summoner" id="sizeWeight2" checked="checked"
