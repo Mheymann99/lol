@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router'
+Vue.use(VueRouter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,6 +21,34 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('application', require('./components/Application.vue'));
 Vue.component('data-table', require('./components/Table.vue'));
 
+const routes = [
+    {
+        path: '/',
+        component: require('./views/BaseView.vue'),
+    },
+    {
+        path: '/summoner/:summoner',
+        component: require('./views/Summoner.vue'),
+        props: true
+    },
+    {
+        path: '/matchups/:summoner_id',
+        component: require('./views/Matchups.vue'),
+        props: true
+    },
+    {
+        path: '/opponent/matchups/:summoner_id',
+        component: require('./views/OpponentMatchups.vue'),
+        props: true
+    },
+];
+
+const router = new VueRouter({
+    routes, // short for `routes: routes`,
+    //no # mode
+});
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });

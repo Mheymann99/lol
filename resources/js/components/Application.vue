@@ -92,32 +92,8 @@
 
         <div class="backgroundo" :style="backgroundo">
             <div class="pt-20 px-6 md:px-0 w-full" style="height: 100%; overflow-y: auto">
-                <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
-                    <div class="flex flex-row justify-around">
-                        <div class="toggle p-2 m-auto w-1/2">
-                            <input type="radio" name="type" value="summoner" id="sizeWeight2" checked="checked"
-                                   v-model="type"/>
-                            <label for="sizeWeight2" class="text-grey-dark">Personal</label>
-                            <input type="radio" name="type" value="opponent" id="sizeDimensions2" v-model="type"/>
-                            <label for="sizeDimensions2" class="text-grey-dark">Opponent</label>
-                        </div>
-                        <div class="toggle p-2">
-                            <input type="radio" name="sizeBy" value="normal" id="sizeWeight" checked="checked"
-                                   v-model="ranked"/>
-                            <label for="sizeWeight" class="text-grey-dark">Normal</label>
-                            <input type="radio" name="sizeBy" value="ranked" id="sizeDimensions" v-model="ranked"/>
-                            <label for="sizeDimensions" class="text-grey-dark">Ranked</label>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded border border-grey p-3">
-                        <data-table :source="source" :columns="fields"></data-table>
-                    </div>
-                </div>
-                <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
-                    <div class="p-3 text-3xl text-blue m-auto">
-                        Select A Summoner!
-                    </div>
-                </div>
+                <router-view></router-view>
+
             </div>
         </div>
 
@@ -130,13 +106,14 @@
         data() {
             return {
                 summoner: null,
-                ranked: 'normal',
-                source: [],
-                fields: [],
-                type: 'summoner',
                 splash: ''
 
             }
+        },
+        mounted(){
+          if (this.$route.params.summoner){
+              this.summoner = this.$route.params.summoner;
+          }
         },
         methods: {
             getData: function () {
@@ -155,14 +132,8 @@
         },
         watch: {
             summoner: function () {
-                this.getData();
                 this.getSplash();
-            },
-            ranked: function () {
-                this.getData();
-            },
-            type: function () {
-                this.getData();
+                this.$router.push('/summoner/'+this.summoner);
             }
         },
         computed: {
