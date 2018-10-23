@@ -14,9 +14,9 @@ class SummonerRanked extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {
+    {   $champ = Champion::find($this->champion_id);
         return [
-            'champion' =>["text" =>$this->championName, "src" => Champion::find($this->champion_id)->portrait_url],
+            'champion' =>["text" =>$champ->champion_name, "src" => $champ->portrait_url],
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg game duration' => gmdate("H:i:s", $this->game_duration),
