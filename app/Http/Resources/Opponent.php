@@ -21,10 +21,10 @@ class Opponent extends JsonResource
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg gold at 10m (opponent\')' => self::readable($this->gold_at_10_opponent),
-            'delta goldat 10m' => self::readable($this->gold_at_10_opponent),
+            'delta goldat 10m' => self::readable($this->delta_gold_at_10),
             'avg game duration' => gmdate("H:i:s", $this->game_duration),
             'avg KDA' => self::readable($this->kda),
-            'avg KDA (opponent\')' => self::readable($this->kda),
+            'avg KDA (opponent\')' => self::readable($this->kda_opponent),
             'winrate' => self::readable($this->winrate*100).'%'
         ];
     }
