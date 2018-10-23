@@ -51,7 +51,9 @@
                     <template v-for="c in columns">
                         <th class="py-4 px-6 text-white bg-blue-dark font-sans font-medium uppercase text-sm border-b border-grey-light">
                             <a href="#" @click.prevent="setOrder(c)" class="text-white no-underline flex flex-row">{{beautify(c)}}
-                                <div class="flex flex-col w-1 ml-1" v-if="order.field == c || order.field == c.target"><i  class="arrow ml-1 text-white" :class="order.direction === 'asc' ? 'down': 'up'"></i></div>
+                                <div class="flex flex-col w-1 ml-1" v-if="order.field == c || order.field == c.target">
+                                    <i class="arrow ml-1 text-white"
+                                       :class="order.direction === 'asc' ? 'down': 'up'"></i></div>
 
                                 <div class="flex flex-col w-1 ml-1" v-else>
                                     <i class="arrow-2  ml-1  up"></i>
@@ -69,8 +71,12 @@
                         @dblclick="doubleClick(s)">
                         <td v-for="c in columns" class="py-4 px-6 border-b border-grey-light relative">
                             <template v-if="columnImage(s, c)">
-                                <img v-if="columnValue(s, c).hasOwnProperty('src')" :src="columnValue(s, c).src" class="w-16" />
-                                <span v-if="columnValue(s, c).hasOwnProperty('text')" class="overlay text-xs shadow-inner">{{columnValue(s, c).text}}</span>
+                                <div class="flex flex-col justify-center items-center">
+                                    <img v-if="columnValue(s, c).hasOwnProperty('src')" :src="columnValue(s, c).src"
+                                         class="w-12"/>
+                                    <span v-if="columnValue(s, c).hasOwnProperty('text')"
+                                          class="overlay text-xs shadow-inner text-white p-2 rounded">{{columnValue(s, c).text}}</span>
+                                </div>
                             </template>
                             <template v-else>{{columnValue(s, c)}}</template>
 
@@ -86,31 +92,30 @@
     </div>
 </template>
 <style scoped>
-    .overlay{
-        position: absolute;
-        top: 19%;
-        left: 13%;
-        color: white;
-        font-weight: bold;
-        text-shadow: 2px 2px 2px #212121;
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.8);
     }
+
     i.arrow {
         border: solid white;
         border-width: 0 3px 3px 0;
         display: inline-block;
         padding: 3px;
     }
+
     i.arrow-2 {
-        border:  dashed rgba(112, 175, 255, 0.54);
+        border: dashed rgba(112, 175, 255, 0.54);
         border-width: 0 3px 3px 0;
         display: inline-block;
         padding: 3px;
     }
-    .down{
+
+    .down {
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
     }
-    .up{
+
+    .up {
         transform: rotate(-135deg);
         -webkit-transform: rotate(-135deg);
     }
@@ -144,7 +149,7 @@
                 show: 15
             }
         },
-        mounted(){
+        mounted() {
             this.source_bkp = this.source;
         },
         computed: {
@@ -166,8 +171,8 @@
                 let postSearch = this.search(this.searchTerm, this.source);
                 let target = this.order.field;
 
-                if (this.order.field != ''){
-                    if (typeof this.order.field === 'object'){
+                if (this.order.field != '') {
+                    if (typeof this.order.field === 'object') {
                         target = this.order.field.target;
                     }
                     postSearch = _.orderBy(postSearch, [target], [this.order.direction]);
@@ -239,20 +244,20 @@
                 let value;
                 if (col !== null && typeof col === 'object') {
                     if (col.hasOwnProperty("targetFunction")) {
-                        value= col.targetFunction(source);
+                        value = col.targetFunction(source);
                     } else {
                         value = _.get(source, col.target);
                     }
                 } else {
                     value = source[col];
                 }
-               return value;
+                return value;
             },
-            columnImage(source, col){
+            columnImage(source, col) {
                 let value;
                 if (col !== null && typeof col === 'object') {
                     if (col.hasOwnProperty("targetFunction")) {
-                        value= col.targetFunction(source);
+                        value = col.targetFunction(source);
                     } else {
                         value = _.get(source, col.target);
                     }
@@ -260,16 +265,16 @@
                     value = source[col];
 
                 }
-                if (value !== null && typeof value === 'object'){
+                if (value !== null && typeof value === 'object') {
                     return true;
                 }
             },
-            setOrder (col){
-                if (typeof col === 'object' && col.hasOwnProperty('target')){
-                    this.order.direction = (this.order.field == col.target) ? ((this.order.direction == 'asc') ? 'desc' : 'asc' ) : this.order.direction;
+            setOrder(col) {
+                if (typeof col === 'object' && col.hasOwnProperty('target')) {
+                    this.order.direction = (this.order.field == col.target) ? ((this.order.direction == 'asc') ? 'desc' : 'asc') : this.order.direction;
                     this.order.field = col.target;
-                }else{
-                    this.order.direction = (this.order.field == col) ? ((this.order.direction == 'asc') ? 'desc' : 'asc' ) : this.order.direction;
+                } else {
+                    this.order.direction = (this.order.field == col) ? ((this.order.direction == 'asc') ? 'desc' : 'asc') : this.order.direction;
                     this.order.field = col;
                 }
             }
