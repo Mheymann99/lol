@@ -23,8 +23,8 @@
                 </div>
             </div>
             <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
-                <div class="p-3 text-3xl text-white overlay shadow-inner m-auto">
-                    Loading Data
+                <div class="p-3 text-5xl text-white shadow-inner m-auto spin">
+                    <i class="fas fa-spinner"></i>
                 </div>
             </div>
         </transition>

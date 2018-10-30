@@ -74,3 +74,11 @@
 .overlay {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+
+.spin{
+    animation: spinner .6s linear infinite;
+}
