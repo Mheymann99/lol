@@ -80,5 +80,5 @@
 }
 
 .spin{
-    animation: spinner .6s linear infinite;
+    animation: spinner 2s linear infinite;
 }
