@@ -4,7 +4,7 @@
             <div class="container mx-auto h-full">
                 <div class="flex items-center justify-center h-12">
 
-                    <button class="inline-block select-none" @click="">
+                    <button class="inline-block select-none" @click="$router.push('/');">
                         <span class="appearance-none flex items-center inline-block font-medium px-4 py-2 rounded"
                               :class="'bg-white text-blue'">
                                             <span class="mr-1">Lol Stats</span>
@@ -35,7 +35,7 @@
                                  </div>
                              </li>-->
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner =201418787">
+                                <button class="inline-block select-none" @click="changeSummoner(201418787)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Alex</span>
@@ -43,7 +43,7 @@
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner = 204615907">
+                                <button class="inline-block select-none" @click="changeSummoner(204615907)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Tano</span>
@@ -51,7 +51,7 @@
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner = 201423283">
+                                <button class="inline-block select-none" @click="changeSummoner(201423283)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Bruno</span>
@@ -59,7 +59,7 @@
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner = 204353170">
+                                <button class="inline-block select-none" @click="changeSummoner(204353170)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Martin</span>
@@ -67,7 +67,7 @@
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner = 200912346">
+                                <button class="inline-block select-none" @click="changeSummoner(200912346)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Pabli</span>
@@ -75,7 +75,7 @@
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
-                                <button class="inline-block select-none" @click="summoner = 340840">
+                                <button class="inline-block select-none" @click="changeSummoner(340840)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
                                              :class="'bg-white text-blue'">
                                             <span class="mr-1">Leo</span>
@@ -116,11 +116,16 @@
                 this.champion = this.$route.params.champion;
             }else {
                 if (this.$route.params.summoner) {
-                    this.summoner = this.$route.params.summoner;
+                    this.changeSummoner(this.$route.params.summoner);
                 }
             }
         },
         methods: {
+            changeSummoner(val){
+              this.summoner = val;
+                this.getSplash();
+                this.$router.push('/summoner/'+this.summoner);
+            },
             getData: function () {
                 axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner).then((data) => {
                     console.log(data.data);
@@ -144,10 +149,6 @@
             },
         },
         watch: {
-            summoner: function () {
-                this.getSplash();
-                this.$router.push('/summoner/'+this.summoner);
-            },
             '$route.params.champion' () {
                 this.champion = this.$route.params.champion;
 

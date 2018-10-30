@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
-            
+            <button class="text-white p-2 bg-blue w-24 flex flex-row justify-center rounded mb-4" @click="$router.go(-1);"> <i class="fas fa-arrow-left"></i><span class="px-2">Back</span></button>
             <div class="bg-white rounded border border-grey p-3">
                 <data-table :source="source" :columns="fields" @selected="selected"></data-table>
             </div>
