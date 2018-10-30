@@ -1,16 +1,20 @@
 <template>
     <div>
-        <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
-            <button class="text-white p-2 bg-blue w-24 flex flex-row justify-center rounded mb-4" @click="$router.go(-1);"> <i class="fas fa-arrow-left"></i><span class="px-2">Back</span></button>
-            <div class="bg-white rounded border border-grey p-3">
-                <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+        <transition name="fade">
+            <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
+                <button class="text-white p-2 bg-blue w-24 flex flex-row justify-center rounded mb-4"
+                        @click="$router.go(-1);"><i class="fas fa-arrow-left"></i><span class="px-2">Back</span>
+                </button>
+                <div class="bg-white rounded border border-grey p-3">
+                    <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+                </div>
             </div>
-        </div>
-        <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
-            <div class="p-3 text-3xl text-blue m-auto">
-                Loading Data
+            <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
+                <div class="p-3 text-3xl text-white overlay shadow-inner m-auto">
+                    Loading Data
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 
 </template>
@@ -28,19 +32,19 @@
 
             }
         },
-        mounted(){
+        mounted() {
             this.getData();
 
         },
         props: ['summoner', 'champion'],
         methods: {
-            selected(row){
+            selected(row) {
 
             },
 
             getData: function () {
                 if (this.summoner) {
-                    axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner+'/opponent/'+this.champion).then((data) => {
+                    axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner + '/opponent/' + this.champion).then((data) => {
                         console.log(data.data);
                         this.source = data.data.data;
                         this.fields = Object.keys(this.source[0]);
@@ -55,7 +59,7 @@
             }
         },
         watch: {
-            summoner: function(){
+            summoner: function () {
                 this.getData();
             },
             ranked: function () {

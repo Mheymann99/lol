@@ -202,18 +202,7 @@
         background-color: #EEE;
     }
 
-    .fade-enter-active {
-        transition: opacity .2s ease-out;
-    }
-    .fade-enter {
-        opacity: 0;
-    }
-    .fade-enter-to {
-        opacity: 1;
-    }
-    .fade-move {
-        transition: transform .2s;
-    }
+
 
     .backgroundo {
         background-image: none;
