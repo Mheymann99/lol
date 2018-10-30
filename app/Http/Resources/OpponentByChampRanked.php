@@ -25,7 +25,7 @@ class OpponentByChampRanked extends JsonResource
             'avg game duration' => gmdate("H:i:s", $this->game_duration),
             'avg KDA' => self::readable($this->kda),
             'avg KDA (opponent\')' => self::readable($this->kda_opponent),
-            'winrate %' => self::readable($this->winrate*100)
+            'winrate %' => (float)self::readable($this->winrate*100)
         ];
     }
 

@@ -22,7 +22,7 @@ class Summoner extends JsonResource
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg game duration' => gmdate("H:i:s", $this->game_duration),
             'avg KDA' => self::readable($this->kda),
-            'winrate %' => self::readable($this->winrate*100)
+            'winrate %' => (float)self::readable($this->winrate*100)
         ];
     }
 
