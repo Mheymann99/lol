@@ -20,6 +20,7 @@ Vue.use(VueRouter);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('application', require('./components/Application.vue'));
 Vue.component('data-table', require('./components/Table.vue'));
+Vue.component('application2', require('./components/Application2.vue'));
 
 const routes = [
     {

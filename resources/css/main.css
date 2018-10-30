@@ -59,17 +59,17 @@
 
 * { outline: 0 !important; }
 
-.fade-enter-active {
-    transition: opacity 1s ease-out;
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .4s ease-out;
 }
-.fade-enter {
+.fade-enter, .fade-leave-to {
     opacity: 0;
 }
-.fade-enter-to {
+.fade-enter-to, .fade-leave {
     opacity: 1;
 }
 .fade-move {
-    transition: transform 1s;
+    transition: transform .4s;
 }
 .overlay {
     background-color: rgba(0, 0, 0, 0.8);
@@ -82,3 +82,4 @@
 .spin{
     animation: spinner 2s linear infinite;
 }
+
