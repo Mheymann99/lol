@@ -90,12 +90,15 @@
             </div>
         </nav>
 
-        <div class="backgroundo" :style="backgroundo">
+        <div class="backgroundo" :style="background">
             <div class="pt-20 px-6 md:px-0 w-full" style="height: 100%; overflow-y: auto">
-                <router-view></router-view>
+                <transition name="fade">
+                    <router-view></router-view>
+                </transition>
 
             </div>
         </div>
+        <img v-show="show" :src="splash" @load="loaded"/>
 
     </div>
 </template>
@@ -107,24 +110,27 @@
             return {
                 summoner: null,
                 champion: null,
+                show: false,
+                load: false,
+                background: null,
                 splash: ''
 
             }
         },
-        mounted(){
-            if (this.$route.params.champion){
+        mounted() {
+            if (this.$route.params.champion) {
                 this.champion = this.$route.params.champion;
-            }else {
+            } else {
                 if (this.$route.params.summoner) {
                     this.changeSummoner(this.$route.params.summoner);
                 }
             }
         },
         methods: {
-            changeSummoner(val){
-              this.summoner = val;
+            changeSummoner(val) {
+                this.summoner = val;
                 this.getSplash();
-                this.$router.push('/summoner/'+this.summoner);
+                this.$router.push('/summoner/' + this.summoner);
             },
             getData: function () {
                 axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner).then((data) => {
@@ -135,11 +141,11 @@
 
             },
             getSplash: function () {
-                if (this.$route.params.champion){
+                if (this.$route.params.champion) {
                     axios.get('/champsplash/' + this.champion).then((data) => {
                         this.splash = data.data;
                     });
-                }else {
+                } else {
                     if (this.$route.params.summoner) {
                         axios.get('/splash/' + this.summoner).then((data) => {
                             this.splash = data.data;
@@ -147,17 +153,24 @@
                     }
                 }
             },
+            loaded() {
+                this.load = true;
+                this.background = this.backgroundo;
+            }
         },
         watch: {
-            '$route.params.champion' () {
+            '$route.params.champion'() {
                 this.champion = this.$route.params.champion;
 
             },
-            $route(to, from){
+            $route(to, from) {
                 this.getSplash();
             },
-            champion: function(){
+            champion: function () {
                 this.getSplash();
+            },
+            splash: function () {
+                this.load = false;
             }
         },
         computed: {
@@ -189,11 +202,25 @@
         background-color: #EEE;
     }
 
+    .fade-enter-active {
+        transition: opacity .2s ease-out;
+    }
+    .fade-enter {
+        opacity: 0;
+    }
+    .fade-enter-to {
+        opacity: 1;
+    }
+    .fade-move {
+        transition: transform .2s;
+    }
+
     .backgroundo {
         background-image: none;
         background-position: center;
         background-size: cover;
         height: 100%;
+        transition: background-image .4s ease-in-out;
     }
 
     fieldset {
