@@ -34,6 +34,28 @@
                        class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:shadow"
                        @mouseover="showMap = !showMap" @mouseout="showMap = !showMap">
                         <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                        Phone
+                        <transition name="fade">
+                            <i class="far  float-right fa-plus-square" v-show="showMap" aria-hidden="true"></i>
+                        </transition>
+                    </a>
+                </li>
+                <li class="flex justify-between block">
+                    <a href="#"
+                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:shadow"
+                       @mouseover="showMap = !showMap" @mouseout="showMap = !showMap">
+                        <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                        Fax
+                        <transition name="fade">
+                            <i class="far  float-right fa-plus-square" v-show="showMap" aria-hidden="true"></i>
+                        </transition>
+                    </a>
+                </li>
+                <li class="flex justify-between block">
+                    <a href="#"
+                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:shadow"
+                       @mouseover="showMap = !showMap" @mouseout="showMap = !showMap">
+                        <i class="fa fa-user mr-2" aria-hidden="true"></i>
                         Map
                         <transition name="fade">
                             <i class="far  float-right fa-plus-square" v-show="showMap" aria-hidden="true"></i>
@@ -47,18 +69,13 @@
                 <div class="flex justify-between flex-grow items-center border-b h-24">
                     <div class="flex">
                         <ul class="flex list-reset text-black">
-                            <li class="py-4 px-4">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            </li>
-                            <li class="py-4 px-4">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </li>
                             <li class="flex items-center w-8 h-8 ml-8">
                                 <a href="#" class="relative no-underline text-black">
-                                    <i class="fa fa-list absolute pin-t pin-r" aria-hidden="true"></i>
-                                    <span class="absolute rounded-full h-4 w-4 bg-blue text-xs text-center leading-tight text-white pin-b pin-l">2</span>
+                                    <i class="fa fa-exclamation-triangle absolute pin-t pin-r" aria-hidden="true"></i>
+                                    <span class="absolute rounded-full h-5 w-5 bg-red-dark text-xs text-center leading-tight text-white pin-b pin-l"><span class="mt-1 flex justify-center"> 2</span></span>
                                 </a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="flex">
@@ -67,6 +84,18 @@
                                 <span class="text-sm">
                                     <i class="fa fa-comments" aria-hidden="true"></i>
                                     Chat
+                                </span>
+                            </li>
+                            <li class="border-l px-4">
+                                <span class="text-sm">
+                                    Preview
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li class="border-l px-4">
+                                <span class="text-sm">
+                                    Languages
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 </span>
                             </li>
                             <li class="border-l px-4">
