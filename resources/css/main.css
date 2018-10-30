@@ -71,3 +71,6 @@
 .fade-move {
     transition: transform .2s;
 }
+.overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+}
