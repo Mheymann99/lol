@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Champion;
 
-class Opponent extends JsonResource
+class OpponentByChampRankedInverse extends JsonResource
 {
     /**
      * Transform the resource into an array.

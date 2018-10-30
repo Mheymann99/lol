@@ -106,14 +106,19 @@
         data() {
             return {
                 summoner: null,
+                champion: null,
                 splash: ''
 
             }
         },
         mounted(){
-          if (this.$route.params.summoner){
-              this.summoner = this.$route.params.summoner;
-          }
+            if (this.$route.params.champion){
+                this.champion = this.$route.params.champion;
+            }else {
+                if (this.$route.params.summoner) {
+                    this.summoner = this.$route.params.summoner;
+                }
+            }
         },
         methods: {
             getData: function () {
@@ -125,15 +130,33 @@
 
             },
             getSplash: function () {
-                axios.get('/splash/' + this.summoner).then((data) => {
-                    this.splash = data.data;
-                });
-            }
+                if (this.$route.params.champion){
+                    axios.get('/champsplash/' + this.champion).then((data) => {
+                        this.splash = data.data;
+                    });
+                }else {
+                    if (this.$route.params.summoner) {
+                        axios.get('/splash/' + this.summoner).then((data) => {
+                            this.splash = data.data;
+                        });
+                    }
+                }
+            },
         },
         watch: {
             summoner: function () {
                 this.getSplash();
                 this.$router.push('/summoner/'+this.summoner);
+            },
+            '$route.params.champion' () {
+                this.champion = this.$route.params.champion;
+
+            },
+            $route(to, from){
+                this.getSplash();
+            },
+            champion: function(){
+                this.getSplash();
             }
         },
         computed: {

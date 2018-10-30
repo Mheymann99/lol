@@ -32,6 +32,16 @@ const routes = [
         props: true
     },
     {
+        path: '/summoner/:summoner/champion/:champion',
+        component: require('./views/Champion.vue'),
+        props: true
+    },
+    {
+        path: '/summoner/:summoner/champion/:champion/opponent',
+        component: require('./views/Opponent.vue'),
+        props: true
+    },
+    {
         path: '/matchups/:summoner_id',
         component: require('./views/Matchups.vue'),
         props: true

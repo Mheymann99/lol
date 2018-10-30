@@ -17,7 +17,7 @@ class OpponentRanked extends JsonResource
     {
         $champ = Champion::find($this->champion_id);
         return [
-            'champion' =>["text" =>$champ->champion_name, "src" => $champ->portrait_url],
+            'champion' =>["text" =>$champ->champion_name, "src" => $champ->portrait_url , "id" => $champ->id],
             '# of games' =>$this->num_games,
             'avg gold at 10m' => self::readable($this->gold_at_10),
             'avg gold at 10m (opponent\')' => self::readable($this->gold_at_10_opponent),

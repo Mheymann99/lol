@@ -1,22 +1,7 @@
 <template>
     <div>
         <div class="p-4 w-full m-auto xxl:w-4/5 flex flex-col " v-if="source.length > 0">
-            <div class="flex flex-row justify-around">
-                <div class="toggle p-2 m-auto w-1/2">
-                    <input type="radio" name="type" value="summoner" id="sizeWeight2" checked="checked"
-                           v-model="type"/>
-                    <label for="sizeWeight2" class="text-grey-dark">Personal</label>
-                    <input type="radio" name="type" value="opponent" id="sizeDimensions2" v-model="type"/>
-                    <label for="sizeDimensions2" class="text-grey-dark">Opponent</label>
-                </div>
-                <div class="toggle p-2">
-                    <input type="radio" name="sizeBy" value="normal" id="sizeWeight" checked="checked"
-                           v-model="ranked"/>
-                    <label for="sizeWeight" class="text-grey-dark">Normal</label>
-                    <input type="radio" name="sizeBy" value="ranked" id="sizeDimensions" v-model="ranked"/>
-                    <label for="sizeDimensions" class="text-grey-dark">Ranked</label>
-                </div>
-            </div>
+
             <div class="bg-white rounded border border-grey p-3">
                 <data-table :source="source" :columns="fields" @selected="selected"></data-table>
             </div>
@@ -47,20 +32,15 @@
             this.getData();
 
         },
-        props: ['summoner'],
+        props: ['summoner', 'champion'],
         methods: {
             selected(row){
-                this.$emit('champion', row.champion.id);
-                if (this.type == 'summoner') {
-                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id)
-                }else{
-                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id+'/opponent')
-                }
+
             },
 
             getData: function () {
                 if (this.summoner) {
-                    axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner).then((data) => {
+                    axios.get('/' + this.ranked + '/' + this.type + '/' + this.summoner+'/champion/'+this.champion).then((data) => {
                         console.log(data.data);
                         this.source = data.data.data;
                         this.fields = Object.keys(this.source[0]);

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Champion;
 
-class Opponent extends JsonResource
+class OpponentByChamp extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,7 @@ class Opponent extends JsonResource
      */
     public function toArray($request)
     {
-        $champ = Champion::find($this->champion_id);
+        $champ = Champion::find($this->champion_id_opponent);
         return [
             'champion' =>["text" =>$champ->champion_name, "src" => $champ->portrait_url , "id" => $champ->id],
             '# of games' =>$this->num_games,
