@@ -18,9 +18,9 @@
                         Editor Dashboard
                     </span>
                 </li>
-                <li class="flex justify-between block">
+                <li class="flex justify-between block bg-blue-darkest">
                     <a href="#"
-                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:text-blue"
+                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:shadow"
                        @mouseover="showAddress = !showAddress" @mouseout="showAddress = !showAddress">
                         <i class="fa fa-user mr-2" aria-hidden="true"></i>
                         Address
@@ -31,7 +31,7 @@
                 </li>
                 <li class="flex justify-between block">
                     <a href="#"
-                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:text-blue"
+                       class="no-underline text-white block h-full w-full border-b border-blue-darkest px-8 py-4 hover:shadow"
                        @mouseover="showMap = !showMap" @mouseout="showMap = !showMap">
                         <i class="fa fa-user mr-2" aria-hidden="true"></i>
                         Map
@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </div>
-        <div id="content" class="px-8 bg-transparent flex-grow flex-shrink flex-auto overflow-y-auto">
+        <div id="right-pane" class="px-8 bg-transparent flex-grow flex-shrink flex-auto overflow-y-auto">
             <div id="info" class="border-b border-grey-light h-24">
                 <div class="flex justify-between flex-grow items-center border-b h-24">
                     <div class="flex">
@@ -76,6 +76,22 @@
                                 </span>
                             </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="content" class="px-8 bg-transparent flex-grow flex-shrink flex-auto">
+                <div class="max-w-lg rounded overflow-hidden shadow-lg m-auto mt-8 ">
+                    <div class="w-full bg-blue-darker text-white text-3xl p-6">
+                        Add Address
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">Content here</div>
+                        <p class="text-grey-darker text-base">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                    </div>
+                    <div class="p-6">
+                        <span class="float-right p-6"> footer actions here</span>
                     </div>
                 </div>
             </div>
