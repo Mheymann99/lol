@@ -5,8 +5,11 @@
                 <button class="text-white p-2 bg-blue w-24 flex flex-row justify-center rounded mb-4"
                         @click="$router.go(-1);"><i class="fas fa-arrow-left"></i><span class="px-2">Back</span>
                 </button>
-                <div class="bg-white rounded border border-grey p-3">
-                    <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+                <div class="bg-white rounded shadow-lg flex flex-col">
+                    <div class="w-100 p-3 bg-blue text-white text-3xl rounded-t">Opponents when playing {{name}} in {{ranked}}</div>
+                    <div class="p-3 w-100">
+                        <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+                    </div>
                 </div>
             </div>
             <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
@@ -24,19 +27,20 @@
         name: "Application",
         data() {
             return {
-                ranked: 'normal',
                 source: [],
                 fields: [],
                 type: 'summoner',
-                splash: ''
+                splash: '',
+                name: ''
 
             }
         },
         mounted() {
             this.getData();
+            this.getNameById();
 
         },
-        props: ['summoner', 'champion'],
+        props: ['summoner', 'champion', 'ranked'],
         methods: {
             selected(row) {
 
@@ -51,6 +55,11 @@
                     });
                 }
 
+            },
+            getNameById(){
+                axios.get('/champion/' + this.champion).then((data) => {
+                    this.name = data.data;
+                });
             },
             getSplash: function () {
                 axios.get('/splash/' + this.summoner).then((data) => {

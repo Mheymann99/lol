@@ -37,31 +37,31 @@
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(201418787)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                             :class=" (summoner == 201418787) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Alex</span>
                                         </span>
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(204615907)">
-                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded "
+                                             :class=" (summoner == 204615907) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Tano</span>
                                         </span>
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(201423283)">
-                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded "
+                                             :class=" (summoner == 201423283) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Bruno</span>
                                         </span>
                                 </button>
                             </li>
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(204353170)">
-                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                       <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded "
+                                             :class=" (summoner == 204353170) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Martin</span>
                                         </span>
                                 </button>
@@ -69,7 +69,7 @@
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(200912346)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                             :class="(summoner == 200912346) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Pabli</span>
                                         </span>
                                 </button>
@@ -77,7 +77,7 @@
                             <li class="flex list-reset mx-6">
                                 <button class="inline-block select-none" @click="changeSummoner(340840)">
                                        <span class="appearance-none flex items-center inline-block font-medium hover:text-white hover:bg-blue px-4 py-2 rounded"
-                                             :class="'bg-white text-blue'">
+                                             :class="(summoner == 340840) ? 'bg-white text-blue border-b-2 border-blue shadow-md' : 'bg-white text-blue'">
                                             <span class="mr-1">Leo</span>
                                         </span>
                                 </button>

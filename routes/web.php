@@ -55,3 +55,7 @@ Route::get('/splash/{account_id}', function($account_id){
 Route::get('/champsplash/{champion_id}', function($champion_id){
     return \App\Champion::find($champion_id)->splash_url;
 });
+
+Route::get('/champion/{id}', function ($id){
+   return \App\Champion::find($id)->champion_name;
+});

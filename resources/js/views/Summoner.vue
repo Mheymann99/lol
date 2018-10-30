@@ -18,8 +18,11 @@
                         <label for="sizeDimensions" class="text-grey-dark">Ranked</label>
                     </div>
                 </div>
-                <div class="bg-white rounded border border-grey p-3">
-                    <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+                <div class="bg-white rounded shadow-lg flex flex-col">
+                    <div class="w-100 p-3 bg-blue text-white text-3xl rounded-t">Champions for {{type}}</div>
+                    <div class="p-3 w-100">
+                        <data-table :source="source" :columns="fields" @selected="selected"></data-table>
+                    </div>
                 </div>
             </div>
             <div class="p-4 w-3/4 m-auto flex flex-col" v-else>
@@ -54,9 +57,9 @@
             selected(row) {
                 this.$emit('champion', row.champion.id);
                 if (this.type == 'summoner') {
-                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id)
+                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id+'/ranked/'+this.ranked)
                 } else {
-                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id + '/opponent')
+                    this.$router.push('/summoner/' + this.summoner + '/champion/' + row.champion.id + '/opponent'+'/ranked/'+this.ranked)
                 }
             },
 

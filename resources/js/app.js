@@ -32,12 +32,12 @@ const routes = [
         props: true
     },
     {
-        path: '/summoner/:summoner/champion/:champion',
+        path: '/summoner/:summoner/champion/:champion/ranked/:ranked',
         component: require('./views/Champion.vue'),
         props: true
     },
     {
-        path: '/summoner/:summoner/champion/:champion/opponent',
+        path: '/summoner/:summoner/champion/:champion/opponent/ranked/:ranked',
         component: require('./views/Opponent.vue'),
         props: true
     },
